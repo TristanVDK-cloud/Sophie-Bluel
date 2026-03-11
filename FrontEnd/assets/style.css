@@ -290,13 +290,29 @@ footer nav ul {
 	margin: 2em
 }
 
+.filters {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 2em;
+	margin-top: 1em;
+	gap: 10px;
+}
+
 .filters button {
 	font-family: 'Syne';
 	font-weight: 700;
+	color: #1D6154;
+	background-color: white;
+	border: 1px solid #1D6154;
+	padding: 10px 20px;
+	border-radius: 60px;
+	cursor: pointer;
+	min-width: 100px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	transition: all 0.3s;
+}
+
+.filters .filter-selected {
 	color: white;
 	background-color: #1D6154;
-	margin: 2em auto;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px;
 }

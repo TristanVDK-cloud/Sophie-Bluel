@@ -8,7 +8,7 @@ async function fetchCategories() {
     return await reponse.json();
 }
 
-async function init () {
+async function init() {
     const works = await fetchWorks();
     const categories = await fetchCategories();
 
@@ -38,9 +38,19 @@ function displayCategories(categories, works) {
     const filters = document.querySelector(".filters");
     const btnTous = document.createElement("button")
     btnTous.innerText = "Tous";
+    btnTous.classList.add("filter-selected");
     filters.appendChild(btnTous);
 
-    btnTous.addEventListener("click", () => {
+    function updateSelectedButton(clickedButton) {
+        const currentActive = document.querySelector(".filter-selected");
+        if (currentActive) {
+            currentActive.classList.remove("filter-selected");
+        }
+        clickedButton.classList.add("filter-selected");
+    }
+
+    btnTous.addEventListener("click", (event) => {
+        updateSelectedButton(event.target);
         displayWorks(works);
     });
 
@@ -49,7 +59,8 @@ function displayCategories(categories, works) {
         btn.textContent = categorie.name
         filters.appendChild(btn);
 
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (event) => {
+            updateSelectedButton(event.target);
             const worksFilter = works.filter(work => work.categoryId === categorie.id);
             displayWorks(worksFilter);
         });
@@ -57,7 +68,3 @@ function displayCategories(categories, works) {
 }
 
 init();
-fetchWorks();
-fetchCategories();
-
-
