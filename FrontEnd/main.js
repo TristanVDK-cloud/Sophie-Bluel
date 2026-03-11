@@ -1,15 +1,24 @@
 async function fetchWorks() {
     const reponse = await fetch("http://localhost:5678/api/works/");
-    const works = await reponse.json();
+    return await reponse.json();
+}
 
-    const titles = works.map(work => work.title)
-    // console.log(titles);
-    // console.log(works);
+async function fetchCategories() {
+    const reponse = await fetch("http://localhost:5678/api/categories")
+    return await reponse.json();
+}
+
+async function init () {
+    const works = await fetchWorks();
+    const categories = await fetchCategories();
+
     displayWorks(works);
+    displayCategories(categories, works);
 }
 
 function displayWorks(workList) {
     const gallery = document.querySelector(".gallery");
+    gallery.innerHTML = "";
 
     workList.forEach(work => {
         const figure = document.createElement("figure");
@@ -24,4 +33,31 @@ function displayWorks(workList) {
         gallery.appendChild(figure);
     });
 }
+
+function displayCategories(categories, works) {
+    const filters = document.querySelector(".filters");
+    const btnTous = document.createElement("button")
+    btnTous.innerText = "Tous";
+    filters.appendChild(btnTous);
+
+    btnTous.addEventListener("click", () => {
+        displayWorks(works);
+    });
+
+    categories.forEach(categorie => {
+        const btn = document.createElement("button");
+        btn.textContent = categorie.name
+        filters.appendChild(btn);
+
+        btn.addEventListener("click", () => {
+            const worksFilter = works.filter(work => work.categoryId === categorie.id);
+            displayWorks(worksFilter);
+        });
+    });
+}
+
+init();
 fetchWorks();
+fetchCategories();
+
+
