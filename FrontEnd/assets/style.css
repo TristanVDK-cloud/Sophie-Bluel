@@ -191,6 +191,11 @@ li:hover {
 	color: #B1663C;
 }
 
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -236,39 +241,39 @@ li:hover {
 
 }
 
-#contact {
+#contact, #login {
 	width: 50%;
 	margin: auto;
 }
 
-#contact>* {
+#contact>*, #login>* {
 	text-align: center;
 
 }
 
-#contact h2 {
+#contact, #login h2 {
 	margin-bottom: 20px;
 }
 
-#contact form {
+#contact, #login form {
 	text-align: left;
 	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#contact, #login input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#contact label {
+#contact, #login label {
 	margin: 2em 0 1em 0;
 }
 
-#contact textarea {
+#contact, #login textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -315,4 +320,17 @@ footer nav ul {
 .filters .filter-selected {
 	color: white;
 	background-color: #1D6154;
+}
+
+#login {
+	width: 33%;
+	margin-top: 150px;
+	margin-bottom: 150px;
+}
+
+.forgot-password {
+	text-align: center;
+	display: block;
+	margin-top: 10px;
+	text-decoration: underline;
 }
