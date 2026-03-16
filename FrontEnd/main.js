@@ -1,3 +1,16 @@
+const token = window.localStorage.getItem("token")
+
+if (token) {
+    const filters = document.querySelector(".filters");
+    filters.style.display = "none";
+    const logout = document.querySelector(".login");
+    logout.innerHTML = "Logout";
+    logout.addEventListener("click", () => {
+        window.localStorage.removeItem("token");
+        window.location.href = "login.html";
+    })
+}
+
 async function fetchWorks() {
     const reponse = await fetch("http://localhost:5678/api/works/");
     return await reponse.json();
