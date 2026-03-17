@@ -1,10 +1,13 @@
 const token = window.localStorage.getItem("token")
 
 if (token) {
+    document.querySelector(".edition-mode").style.display = "flex";
+    document.querySelector(".edition-mode").style.display = "gap: 5px";
+    document.querySelector(".js-modal").style.display = "flex";
     const filters = document.querySelector(".filters");
     filters.style.display = "none";
     const logout = document.querySelector(".login");
-    logout.innerHTML = "Logout";
+    logout.innerText = "Logout";
     logout.addEventListener("click", () => {
         window.localStorage.removeItem("token");
         window.location.href = "login.html";
