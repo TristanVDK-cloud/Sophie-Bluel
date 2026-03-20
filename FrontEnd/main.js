@@ -1,17 +1,25 @@
-const token = window.localStorage.getItem("token")
+function adminMode(works) {
+    const token = window.localStorage.getItem("token")
 
-if (token) {
-    document.querySelector(".edition-mode").style.display = "flex";
-    document.querySelector(".edition-mode").style.display = "gap: 5px";
-    document.querySelector(".js-modal").style.display = "flex";
-    const filters = document.querySelector(".filters");
-    filters.style.display = "none";
-    const logout = document.querySelector(".login");
-    logout.innerText = "Logout";
-    logout.addEventListener("click", () => {
-        window.localStorage.removeItem("token");
-        window.location.href = "login.html";
-    })
+    if (token) {
+        document.querySelector(".edition-mode").style.display = "flex";
+        document.querySelector(".js-modal").style.display = "inline-block";
+        document.querySelector(".filters").style.display = "none";
+
+        const logout = document.querySelector(".login");
+        logout.innerText = "Logout";
+        logout.addEventListener("click", () => {
+            window.localStorage.removeItem("token");
+            window.location.href = "login.html";
+        })
+
+        const modalBtn = document.querySelector(".js-modal");
+        if (modalBtn) {
+            modalBtn.addEventListener("click", (event) => {
+                openModal(event, works);
+            });
+        }
+    }
 }
 
 async function fetchWorks() {
@@ -30,6 +38,7 @@ async function init() {
 
     displayWorks(works);
     displayCategories(categories, works);
+    adminMode(works);
 }
 
 function displayWorks(workList) {
