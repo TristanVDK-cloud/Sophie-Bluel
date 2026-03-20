@@ -17,6 +17,23 @@ function closeModal() {
     modal.setAttribute('aria-hidden', true);
 }
 
+async function deleteWork(id, token) {
+    const reponse = await fetch(`http://localhost:5678/api/works/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/JSON",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
+    if (reponse.ok) {
+        console.log("Suppression réussie");
+        window.location.reload();
+    } else {
+        alert("Erreur lors de la suppression");
+    }
+}
+
 function displayModalGallery(works) {
     const modalGallery = document.querySelector(".modal-gallery");
     modalGallery.innerHTML = "";
@@ -37,7 +54,19 @@ function displayModalGallery(works) {
         figure.appendChild(trashBtn);
         modalGallery.appendChild(figure);
         trashBtn.appendChild(icon)
+
+        trashBtn.addEventListener("click", async (event) => {
+            event.preventDefault();
+            const id = work.id
+            const token = window.localStorage.getItem("token")
+
+            if (confirm("Voulez-vous vraiment supprimer ce projet ?")) {
+                deleteWork(id, token);
+            }
+        })
     });
+
+
 }
 
 const closeBtn = document.querySelector(".js-modal-close");
