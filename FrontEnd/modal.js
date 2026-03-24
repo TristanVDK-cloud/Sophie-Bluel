@@ -15,6 +15,12 @@ function closeModal() {
     const modal = document.querySelector("#modal1");
     modal.style.display = "none";
     modal.setAttribute('aria-hidden', true);
+    document.querySelector("#form-add-photo").reset();
+    previewImg.src = "#"; previewImg.classList.add("hidden");
+    document.querySelector(".container-add-img i").classList.remove("hidden");
+    document.querySelector(".label-file").classList.remove("hidden");
+    document.querySelector(".container-add-img p").classList.remove("hidden");
+    document.querySelector("#btn-validate").classList.remove("active");
 }
 
 async function deleteWork(id, token) {
@@ -106,5 +112,81 @@ function displayCategoriesInForm(categories) {
         select.appendChild(option);
     });
 }
+
+const inputFile = document.querySelector("#file");
+const previewImg = document.querySelector("#preview-img");
+const containerAddImg = document.querySelector(".container-add-img");
+
+inputFile.addEventListener("change", () => {
+    const file = inputFile.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            previewImg.src = event.target.result;
+            previewImg.classList.remove("hidden");
+
+            document.querySelector(".container-add-img i").classList.add("hidden");
+            document.querySelector(".label-file").classList.add("hidden");
+            document.querySelector(".container-add-img p").classList.add("hidden");
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+const inputTitle = document.querySelector("#title");
+const inputCategory = document.querySelector("#category");
+const btnValidate = document.querySelector("#btn-validate")
+
+function checkForm() {
+    const title = document.querySelector("#title").value;
+    const category = document.querySelector("#category").value;
+    const file = document.querySelector("#file").files[0];
+
+
+    if (title !== "" && category !== "" && file !== undefined) {
+        btnValidate.classList.add("active");
+    } else {
+        btnValidate.classList.remove("active");
+    }
+}
+
+inputTitle.addEventListener("input", checkForm);
+inputCategory.addEventListener("change", checkForm);
+inputFile.addEventListener("change", checkForm);
+
+const formAddPhoto = document.querySelector("#form-add-photo");
+
+formAddPhoto.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!btnValidate.classList.contains("active")) {
+        alert("Veuillez remplir tous les champs");
+        return;
+    }
+
+    const token = window.localStorage.getItem("token");
+
+    const formData = new FormData();
+    formData.append("image", inputFile.files[0]);
+    formData.append("title", inputTitle.value);
+    formData.append("category", inputCategory.value);
+
+    const reponse = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        body: formData
+    });
+
+    if (reponse.ok) {
+        alert("Projet ajouté avec succès !")
+        window.location.reload();
+    } else {
+        alert("Erreur lors de l'ajout du projet");
+    }
+});
 
 closeModal();

@@ -296,6 +296,14 @@ input[type="submit"], .btn-add-view, #btn-validate {
 	border-radius: 60px;
 }
 
+#btn-validate {
+	background-color: rgba(167, 167, 167, 1);
+}
+
+#btn-validate.active {
+	background-color: #1D6154;
+}
+
 .btn-add-view, #btn-validate {
 	display: flex;
 	justify-content: center;
@@ -476,7 +484,6 @@ hr {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 20px;
 	margin-bottom: 20px;
 }
 
@@ -484,6 +491,11 @@ hr {
 	font-size: 50px;
 	color: rgba(185, 197, 204, 1);
 	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+.container-add-img p {
+	margin-bottom: 20px;
 }
 
 .container-add-img label {
@@ -503,4 +515,10 @@ hr {
 
 .modal-content {
 	width: 100%;
+}
+
+#preview-img {
+	max-height: 170px;
+	max-width: 100%;
+	object-fit: contain;
 }
