@@ -38,6 +38,7 @@ async function init() {
 
     displayWorks(works);
     displayCategories(categories, works);
+    displayCategoriesInForm(categories)
     adminMode(works);
 }
 

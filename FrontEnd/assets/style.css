@@ -268,7 +268,7 @@ a {
 	flex-direction: column;
 }
 
-#contact input, #login input, .btn-add-photo {
+input, select, .btn-add-view, #btn-validate {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
@@ -285,7 +285,7 @@ a {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"], .btn-add-photo {
+input[type="submit"], .btn-add-view, #btn-validate {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -296,7 +296,7 @@ input[type="submit"], .btn-add-photo {
 	border-radius: 60px;
 }
 
-.btn-add-photo {
+.btn-add-view, #btn-validate {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -397,7 +397,7 @@ footer nav ul {
 
 .modal-wrapper {
 	background-color: white;
-	width: 630px;
+	width: 400px;
 	max-width: 95%;
 	padding: 60px 100px;
 	border-radius: 10px;
@@ -449,5 +449,58 @@ hr {
 	border: 0;
 	border-bottom: 1px solid #B3B3B3;
 	margin: 50px 0;
+	width: 100%;
+}
+
+.hidden {
+	display: none;
+}
+
+.js-modal-back {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	background: none;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+#file {
+	display: none;
+}
+
+.container-add-img {
+	background-color: #E8F1F6;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.container-add-img i {
+	font-size: 50px;
+	color: rgba(185, 197, 204, 1);
+	margin-bottom: 10px;
+}
+
+.container-add-img label {
+	background-color: rgba(203, 214, 220, 1);
+	color: rgba(48, 102, 133, 1);
+	margin-bottom: 10px;
+	padding: 10px 30px;
+	border-radius: 50px;
+	cursor: pointer;
+}
+
+#form-add-photo {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.modal-content {
 	width: 100%;
 }

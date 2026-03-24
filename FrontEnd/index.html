@@ -85,13 +85,40 @@
 	</footer>
 	<aside id="modal1" class="modal">
 		<div class="modal-wrapper">
-			<button class="js-modal-close">X</button>
-			<h3 id="titlemodal">Galerie photo</h3>
-			<div class="modal-gallery">
+			<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
 
+			<div id="modal-view-gallery" class="modal-content">
+				<h3 id="titlemodal">Galerie photo</h3>
+				<div class="modal-gallery">
+
+				</div>
+				<hr>
+				<button class="btn-add-view">Ajouter une photo</button>
 			</div>
-			<hr>
-			<button class="btn-add-photo">Ajouter une photo</button>
+
+			<div id="modal-view-add" class="modal-content hidden">
+				<button class="js-modal-back"><i class="fa-solid fa-arrow-left"></i></button>
+				<h3 id="titlemodal">Ajout photo</h3>
+				<form id="form-add-photo">
+					<div class="container-add-img">
+						<i class="fa-regular fa-image"></i>
+						<label for="file" class="label-file">+ Ajouter photo</label>
+						<input type="file" name="file" id="file" accept="image/jpeg, image/png image/jpg">
+						<p>jpg, png : 4mo max</p>
+						<img id="preview-img" src="#" alt="Aperçu" class="hidden">
+					</div>
+
+					<label for="title">Titre</label><br>
+					<input type="text" id="title" name="title" required><br>
+
+					<label for="category">Catégorie</label><br>
+					<select name="category" id="category" required><br>
+						<option value=""></option>
+					</select>
+					<hr>
+					<input type="submit" value="Valider" id="btn-validate">
+				</form>
+			</div>
 		</div>
 	</aside>
 </body>

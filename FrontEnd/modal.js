@@ -65,9 +65,20 @@ function displayModalGallery(works) {
             }
         })
     });
-
-
 }
+
+function showAddView() {
+    document.getElementById("modal-view-gallery").classList.add("hidden");
+    document.getElementById("modal-view-add").classList.remove("hidden")
+}
+
+function showGalleryView() {
+    document.getElementById("modal-view-gallery").classList.remove("hidden");
+    document.getElementById("modal-view-add").classList.add("hidden");
+}
+
+document.querySelector(".btn-add-view").addEventListener("click", showAddView);
+document.querySelector(".js-modal-back").addEventListener("click", showGalleryView);
 
 const closeBtn = document.querySelector(".js-modal-close");
 if (closeBtn) {
@@ -82,6 +93,18 @@ if (modalContainer) {
 const modalWrapper = document.querySelector(".modal-wrapper");
 if (modalWrapper) {
     modalWrapper.addEventListener("click", stopPropagation);
+}
+
+function displayCategoriesInForm(categories) {
+    const select = document.querySelector("#category");
+    select.innerHTML = '<option value=""></option>';
+
+    categories.forEach(categorie => {
+        const option = document.createElement("option");
+        option.value = categorie.id;
+        option.innerText = categorie.name;
+        select.appendChild(option);
+    });
 }
 
 closeModal();
