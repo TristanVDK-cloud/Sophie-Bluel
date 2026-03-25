@@ -200,6 +200,7 @@ nav li {
 
 li:hover {
 	color: #B1663C;
+	font-weight: 700;
 }
 
 a {
@@ -294,6 +295,11 @@ input[type="submit"], .btn-add-view, #btn-validate {
 	width: 180px;
 	text-align: center;
 	border-radius: 60px;
+}
+
+input[type="submit"]:hover, .btn-add-view:hover {
+	background-color: rgba(14, 47, 40, 1);
+	transition: all 0.3s;
 }
 
 #btn-validate {
