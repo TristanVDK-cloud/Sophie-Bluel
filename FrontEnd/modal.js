@@ -166,6 +166,7 @@ formAddPhoto.addEventListener("submit", async (event) => {
         return;
     }
 
+
     const token = window.localStorage.getItem("token");
 
     const formData = new FormData();
